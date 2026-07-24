@@ -3,6 +3,17 @@
 class CandidateDocument < ApplicationRecord
   belongs_to :candidate_profile
 
+  has_one_attached :file
+
+  validates :file,
+            attached: true,
+            content_type: %w[
+              application/pdf
+              application/msword
+              application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            ],
+            size: { less_than: 25.megabytes }
+
   enum :parsing_status,
        {
          pending: 'pending',
@@ -14,7 +25,7 @@ class CandidateDocument < ApplicationRecord
 
   enum :document_type,
        {
-         cv: "cv"
+         cv: 'cv'
        },
        default: :cv
 end
