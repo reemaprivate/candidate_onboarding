@@ -17,6 +17,7 @@ AllCops:
     - "vendor/**/*"
     - "tmp/**/*"
     - "storage/**/*"
+    - "config/initializers/devise.rb"
 
 Layout/LineLength:
   Max: 120
