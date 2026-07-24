@@ -1,17 +1,34 @@
-<h1>Candidate Onboarding</h1>
-
 <% if user_signed_in? %>
-  <p>Welcome, <%= current_user.email %></p>
 
-  <p>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to "Sign in", new_user_session_path %>
-  </p>
+  <div class="max-w-4xl mx-auto">
 
-  <p>
-    <%= link_to "Create account", new_user_registration_path %>
-  </p>
+    <div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+
+      <h1 class="text-3xl font-bold text-gray-900">
+        Welcome back
+      </h1>
+
+      <p class="mt-2 text-gray-600">
+        Signed in as
+        <span class="font-medium"><%= current_user.email %></span>
+      </p>
+
+      <div class="mt-8 flex gap-4">
+
+        <%= link_to "Start Candidate Onboarding",
+                    new_onboarding_path,
+                    class: "inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700 transition whitespace-nowrap" %>
+
+        <%= button_to "Sign out",
+                      destroy_user_session_path,
+                      method: :delete,
+                      form: { class: "inline-block ml-4" },
+                      class: "rounded-lg border border-gray-300 px-5 py-3 hover:bg-gray-100 transition" %>
+      </div>
+
+    </div>
+
+  </div>
+
+
 <% end %>
