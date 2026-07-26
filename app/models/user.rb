@@ -7,4 +7,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :candidate_profile, dependent: :destroy
+
+  enum :role, {
+    candidate: 0,
+    recruiter: 1,
+    admin: 2
+  }
+
+
 end
