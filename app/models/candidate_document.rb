@@ -13,6 +13,7 @@ class CandidateDocument < ApplicationRecord
               application/vnd.openxmlformats-officedocument.wordprocessingml.document
             ],
             size: { less_than: 25.megabytes }
+  validates :parsing_status, presence: true
 
   enum :parsing_status,
        {
