@@ -19,6 +19,12 @@ class OnboardingsController < ApplicationController
 
     redirect_to edit_onboarding_path,
                 notice: t('.success')
+    rescue ActiveRecord::RecordInvalid
+    @candidate_profile = profile
+
+    flash.now[:alert] = t('.upload_failed')
+
+    render :new, status: :unprocessable_content
   end
 
   def update; end

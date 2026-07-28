@@ -1,3 +1,18 @@
+<% if @candidate_profile.errors.any? %>
+  <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+    <h3 class="font-semibold text-red-700">
+      <%= pluralize(@candidate_profile.errors.count, "error") %>
+      prevented this form from being saved.
+    </h3>
+
+    <ul class="mt-2 list-disc pl-5 text-red-600">
+      <% @candidate_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(
       url: onboarding_path,
       method: :post,

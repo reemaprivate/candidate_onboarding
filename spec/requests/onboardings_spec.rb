@@ -46,5 +46,16 @@ RSpec.describe 'Onboardings', type: :request do
 
       expect(response).to redirect_to(edit_onboarding_path)
     end
+
+    context 'without a file' do
+      it 'does not create a document' do
+        expect do
+          post onboarding_path
+        end.not_to change(CandidateDocument, :count)
+
+        expect(response)
+          .to have_http_status(:unprocessable_content)
+      end
+    end
   end
 end

@@ -12,7 +12,7 @@ module CandidateDocuments
     end
 
     def call
-      document = @profile.candidate_documents.new(
+      document = @profile.candidate_documents.build(
         document_type: :cv,
         parsing_status: :pending
       )

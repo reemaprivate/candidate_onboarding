@@ -34,8 +34,12 @@ RSpec.describe CandidateDocuments::Uploader do
       expect(upload_document.parsing_status).to eq('pending')
     end
 
-    it 'stores the document as a CV' do
+    it 'stores document metadata' do
       expect(upload_document.document_type).to eq('cv')
+      expect(upload_document.original_filename).to eq('sample_cv.pdf')
+      expect(upload_document.content_type).to eq('application/pdf')
+      expect(upload_document.file_size).to be_positive
+      expect(upload_document.candidate_profile).to eq(profile)
     end
   end
 end
