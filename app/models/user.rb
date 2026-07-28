@@ -13,6 +13,4 @@ class User < ApplicationRecord
     recruiter: 1,
     admin: 2
   }
-
-
 end

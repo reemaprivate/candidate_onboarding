@@ -18,7 +18,7 @@ class OnboardingsController < ApplicationController
     )
 
     redirect_to edit_onboarding_path,
-                notice: 'CV uploaded successfully.'
+                notice: t('.success')
   end
 
   def update; end
@@ -29,7 +29,7 @@ class OnboardingsController < ApplicationController
     return if current_user.candidate?
 
     redirect_to root_path,
-                alert: 'Only candidates can access onboarding.'
+                alert: t('onboardings.unauthorized.candidate_only')
   end
 
   def onboarding_params
