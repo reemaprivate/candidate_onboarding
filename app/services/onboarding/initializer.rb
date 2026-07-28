@@ -11,7 +11,7 @@ module Onboarding
     end
 
     def call
-      raise ArgumentError, 'Only candidates can start onboarding' unless @user.candidate?
+      raise ArgumentError, I18n.t('onboardings.unauthorized.candidate_only') unless @user.candidate?
 
       @user.candidate_profile || @user.create_candidate_profile!
     end

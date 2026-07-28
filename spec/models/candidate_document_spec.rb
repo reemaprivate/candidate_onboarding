@@ -3,5 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe CandidateDocument, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'defaults' do
+    it 'defaults to pending' do
+      document = described_class.new
+
+      expect(document.parsing_status).to eq('pending')
+    end
+  end
 end
