@@ -11,15 +11,11 @@ class OnboardingsController < ApplicationController
   end
 
   def create
-    profile = Onboarding::Initializer.call(user: current_user)
-    CandidateDocuments::Uploader.call(
-      profile: profile,
-      file: onboarding_params[:cv]
-    )
+    upload_candidate_cv
 
     redirect_to edit_onboarding_path,
                 notice: t('.success')
-    rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid
     @candidate_profile = profile
 
     flash.now[:alert] = t('.upload_failed')
@@ -40,5 +36,18 @@ class OnboardingsController < ApplicationController
 
   def onboarding_params
     params.permit(:cv)
+  end
+
+  def upload_candidate_cv
+    document = CandidateDocuments::Uploader.call(
+      profile: profile,
+      file: onboarding_params[:cv]
+    )
+
+    ParseCandidateDocumentJob.perform_later(document)
+  end
+
+  def profile
+    @profile ||= Onboarding::Initializer.call(user: current_user)
   end
 end

@@ -47,6 +47,10 @@ en:
     create:
       success: "CV uploaded successfully."
       upload_failed: "Unable to upload CV."
-
+      no_file: "File is required."
+    parsing:
+      processing: "Your CV is being analyzed."
+      completed: "CV analysis completed."
+      failed: "Unable to analyze your CV."
     unauthorized:
       candidate_only: "Only candidates can access onboardings."

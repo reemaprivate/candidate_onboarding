@@ -6,5 +6,13 @@ FactoryBot.define do
 
     document_type { :cv }
     parsing_status { :pending }
+
+    after(:build) do |document|
+      document.file.attach(
+        io: Rails.root.join('spec/fixtures/files/sample_cv.pdf').open,
+        filename: 'sample_cv.pdf',
+        content_type: 'application/pdf'
+      )
+    end
   end
 end

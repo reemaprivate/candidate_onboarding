@@ -14,10 +14,15 @@ module CandidateDocuments
     def call
       document = @profile.candidate_documents.build(
         document_type: :cv,
-        parsing_status: :pending
+        parsing_status: :pending,
       )
 
-      document.file.attach(@file)
+      if @file.present?
+        document.file.attach(@file)
+        document.original_filename = @file.original_filename
+        document.content_type = @file.content_type
+        document.file_size = @file.size
+      end
 
       document.save!
 

@@ -3,3 +3,15 @@
 <p>
   Your extracted information will appear here after your CV has been processed.
 </p>
+
+<% document = @candidate_profile.candidate_documents.last %>
+
+<% if document.processing? %>
+  <p>
+    Your CV is being analyzed.
+  </p>
+<% elsif document.completed? %>
+  <p>
+    CV analysis completed.
+  </p>
+<% end %>
